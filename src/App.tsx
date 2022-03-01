@@ -1,26 +1,39 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.scss';
-import {WalletWrapper} from './components/Wallet/WalletWrapper';
 import Navbar from './components/Navbar/Navbar';
 import NftCard from './components/NftCard/NftCard';
+import { useAnchorWallet, useWallet } from '@solana/wallet-adapter-react';
+import { getNftsForUser } from './utilities/solana';
 
-const nfts = [1,2,3,4,5,6]
 
-function App() {
+const App: React.FC = () => {
 
   const [selectedNfts, toggleNft] = useState([]);
+  const wallet = useAnchorWallet();
+  const [usersNfts, setUsersNfts] = useState<any>([]);
+
+  useEffect(()=>{
+    if(wallet) {
+      void getNfts();
+    }
+  }, [wallet])
+
+  const getNfts = async () => {
+    const metadataArray =  await getNftsForUser(wallet!);
+    setUsersNfts(metadataArray);
+
+  }
+
 
   return (
-    <WalletWrapper>
       <div className="App">
         <Navbar/>
         <div className="App_nft_card">
-          {nfts.map((item, index) => {
-            return <NftCard toggleNft={toggleNft} id={index}  />
+          {usersNfts.map((item: any, index: any) => {
+            return <NftCard toggleNft={toggleNft} selectedNfts={selectedNfts} id={index} nftData={usersNfts[index]}  />
           })}
         </div>
       </div>
-    </WalletWrapper>
 
   );
 }

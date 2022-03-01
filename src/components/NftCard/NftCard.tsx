@@ -1,17 +1,36 @@
-import React from "react";
+import { useAnchorWallet } from "@solana/wallet-adapter-react";
+import React, { useEffect, useState } from "react";
 import { Nft } from "../../utilities/interfaces";
 
 import "./NftCard.scss";
 
-interface NftCardProps {
-  nft: Nft;
-}
 
-const NftCard: React.FC<any> = ({ toggleNft, id}) => {
+
+const NftCard: React.FC<any> = ({ toggleNft, selectedNfts, id,nftData}) => {
+  const [cardInfo, setCardInfo] = useState<{
+    nftUrl: string,
+    nftName: string
+  }>()
+
+
+  useEffect(()=>{
+    void loadNftData();
+  }, [])
+
+  const loadNftData = async () => {
+    const dataMetadata = await fetch(nftData!.metadata.data.data.uri);
+    const dataMetadataJson = await dataMetadata.json();
+    setCardInfo({
+      nftUrl: dataMetadataJson.image,
+      nftName: dataMetadataJson.name
+    })
+  }
+
   return (
-    <div className="nft-card" onClick={()=> toggleNft(id)}>
-      <img src="https://unq-test.s3.eu-central-1.amazonaws.com/p3.jpeg" alt="Name" />
-      <h3>Monkey</h3>
+    <div className="nft-card" onClick={()=> {
+    }}>
+      <img src={cardInfo?.nftUrl} alt="Name" />
+      <h3>{cardInfo?.nftName}</h3>
     </div>
   );
 };
