@@ -1,0 +1,91 @@
+/* TODO add fonts from local assets */
+@import url("https://fonts.googleapis.com/css2?family=Epilogue:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Epilogue:wght@500&family=IBM+Plex+Sans&display=swap");
+
+:root {
+  --dark-blue-color: #0a1428;
+  --green-color: #2bfda7;
+  --green-hover-color: #2bb77d;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style-type: none;
+}
+
+h1 {
+  font-size: 4.5rem;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Epilogue", sans-serif;
+  font-weight: 100;
+}
+
+p,
+a,
+li,
+b,
+input,
+textarea,
+span,
+strong {
+  font-family: "IBM Plex Sans", sans-serif;
+  font-weight: 100;
+}
+
+html,
+body {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  overflow: auto;
+  background-color: var(--dark-blue-color);
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+
+//WALLET CUSTOM CSS
+div .wallet-adapter-button {
+  background-color: var(--dark-blue-color) !important;
+  border: 1px solid var(--green-color);
+  color: var(--green-color);
+  border-radius: 0;
+}
+
+div .wallet-adapter-button-trigger {
+  border: 1px solid var(--green-color);
+  background-color: var(--dark-blue-color) !important;
+  color: var(--green-color);
+  border-radius: 0;
+}
+
+div .wallet-adapter-modal-wrapper {
+  background: var(--dark-blue-color);
+  color: var(--green-color);
+}
+
+div .wallet-adapter-modal-title {
+  color: var(--green-color) !important;
+}
+
+.wallet-adapter-dropdown-list-item {
+  background-color: #32384a6b !important;
+}
+
+.wallet-adapter-dropdown-list-active {
+  background-color: var(--dark-blue-color);
+}
