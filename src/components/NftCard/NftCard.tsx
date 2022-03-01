@@ -1,10 +1,5 @@
-import { useAnchorWallet } from "@solana/wallet-adapter-react";
 import React, { useEffect, useState } from "react";
-import { Nft } from "../../utilities/interfaces";
-
 import "./NftCard.scss";
-
-
 
 const NftCard: React.FC<any> = ({ toggleNft, selectedNfts, id,nftData}) => {
   const [cardInfo, setCardInfo] = useState<{

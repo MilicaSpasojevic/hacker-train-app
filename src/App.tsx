@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './App.scss';
 import Navbar from './components/Navbar/Navbar';
 import NftCard from './components/NftCard/NftCard';
-import { useAnchorWallet, useWallet } from '@solana/wallet-adapter-react';
+import { useAnchorWallet } from '@solana/wallet-adapter-react';
 import { getNftsForUser } from './utilities/solana';
 
 
@@ -21,7 +21,6 @@ const App: React.FC = () => {
   const getNfts = async () => {
     const metadataArray =  await getNftsForUser(wallet!);
     setUsersNfts(metadataArray);
-
   }
 
 
